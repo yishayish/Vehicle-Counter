@@ -93,16 +93,16 @@ def process_New_detections(detections):
         return init(detections)
 
     matIOU = IOU_matrix(objects, detections)
-    news = get_new_objects(matIOU)
+    # news = get_new_objects(matIOU)
     row_ind, col_ind = linear_sum_assignment(-matIOU)
 
     objects_updated = []
-    for idx, i in enumerate(row_ind):
-        if i in news:
-            objects_updated.append((detections[i], counter))
+    for idx, i in enumerate(detections):
+        if idx not in row_ind:
+            objects_updated.append((i, counter))
             counter += 1
         else:
-            objects_updated.append((detections[i], objects[col_ind[idx]][1]))
+            objects_updated.append((i, objects[col_ind[list(row_ind).index(idx)]][1]))
     objects = objects_updated
     objects.sort(key=lambda x: x[1])
     return objects

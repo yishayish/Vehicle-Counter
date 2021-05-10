@@ -18,10 +18,10 @@ def get_parameters(input_path):
     return total_frames, cut
 
 
-input_path = 'V1.mp4'
-output_path = 'result.avi'
+input_path = 'v1.mp4'
+output_path = 'new_result.avi'
 screen_display = True
-length = 400
+length = 200
 debug = False
 cut = 0
 
